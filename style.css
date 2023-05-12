@@ -1,0 +1,75 @@
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(43, 94, 157);
+}
+
+.form{
+    position: absolute;
+    top: 30%;
+    box-shadow: 0 4px 8px rgba(0,0,0,.3);
+    width: 400px;
+    background-color:yellow;
+    border-radius: 10px;
+}
+
+.input{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 10px 10px 0 0;
+    border: none;
+    font-size: 20px;
+    font-family:'Courier New', Courier, monospace;
+}
+
+.input::placeholder{
+    color: lightgray;
+}
+
+.list{
+    padding: 0;
+    margin: 0;
+}
+
+.list li{
+    list-style-type: none;
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    border-top: dotted;
+    border-color: darkgray;
+    position: relative;
+}
+
+.list li .fa-trash{
+    color: red;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+.list li .fa-check-square{
+    color: green;
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.list li.checked {
+    color: darkgray;
+    text-decoration: line-through;
+}
+
+.list li.checked .fa-check-square{
+    color: darkgray;
+}
+
+.todo-list{
+    margin-top: 100px;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(251, 255, 12);
+}
