@@ -1,65 +1,80 @@
-const formElement = document.querySelector(".form");
+var formElement = document.querySelector(".form");
+var inputElement = document.querySelector(".input");
+var ulElement = document.querySelector(".list");
 
-const inputElement = document.querySelector(".input");
+var list = [];
 
-const ulElement = document.querySelector(".list");
-
-let list = JSON.parse(localStorage.getItem("list"));
-if (list) {
-  list.forEach((task) => {
-    toDoList(task);
-  });
+var savedList = localStorage.getItem("list");
+if (savedList) {
+  list = JSON.parse(savedList);
+  renderList();
 }
 
-formElement.addEventListener("submit", (event) => {
+formElement.addEventListener("submit", function(event) {
   event.preventDefault();
-  toDoList();
+  addTask();
 });
 
-function toDoList(task) {
-  let newTask = inputElement.value;
-  if (task) {
-    newTask = task.name;
+function addTask() {
+  var newTask = inputElement.value.trim(); 
+
+  if (newTask !== "") {
+    list.push({ name: newTask, checked: false }); 
+    renderList(); 
+    inputElement.value = ""; 
+    saveList(); 
   }
-
-  const listElement = document.createElement("li");
-  if (task && task.checked) {
-    listElement.classList.add("checked");
-  }
-  listElement.innerText = newTask;
-  ulElement.appendChild(listElement);
-  inputElement.value = "";
-  const checkBtnEl = document.createElement("div");
-  checkBtnEl.innerHTML = `
-  <i class="fas fa-check-square">
-  `;
-  listElement.appendChild(checkBtnEl);
-  const trashBtnEl = document.createElement("div");
-  trashBtnEl.innerHTML = `
-  <i class="fas fa-trash"></i>
-  `;
-  listElement.appendChild(trashBtnEl);
-
-  checkBtnEl.addEventListener("click", () => {
-    listElement.classList.toggle("checked");
-    updateLocalStorage();
-  });
-
-  trashBtnEl.addEventListener("click", () => {
-    listElement.remove();
-    updateLocalStorage();
-  });
-  updateLocalStorage();
 }
 
-function updateLocalStorage() {
-  const listElements = document.querySelectorAll("li");
-  list = [];
-  listElements.forEach((listElement) => {
-    list.push({
-      name: listElement.innerText,
-      checked: listElement.classList.contains("checked"),
+
+function renderList() {
+  ulElement.innerHTML = ""; 
+
+  list.forEach(function(task, index) {
+    var listElement = document.createElement("li");
+    listElement.innerText = task.name;
+
+    if (task.checked) {
+      listElement.classList.add("checked");
+    }
+
+    var checkBtnEl = document.createElement("div");
+    checkBtnEl.innerHTML = "<i class='fas fa-check-square'></i>";
+    listElement.appendChild(checkBtnEl);
+
+    var trashBtnEl = document.createElement("div");
+    trashBtnEl.innerHTML = "<i class='fas fa-trash'></i>";
+    listElement.appendChild(trashBtnEl);
+
+
+    checkBtnEl.addEventListener("click", function() {
+      toggleTask(index);
     });
+
+
+    trashBtnEl.addEventListener("click", function() {
+      deleteTask(index);
+    });
+
+    ulElement.appendChild(listElement);
   });
+}
+
+
+function toggleTask(index) {
+  list[index].checked = !list[index].checked; 
+  renderList(); 
+  saveList();
+}
+
+
+function deleteTask(index) {
+  list.splice(index, 1); 
+  renderList();
+  saveList(); 
+}
+
+
+function saveList() {
   localStorage.setItem("list", JSON.stringify(list));
 }
