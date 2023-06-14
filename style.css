@@ -1,31 +1,37 @@
 body{
-    margin: 0;
+    
     display: flex;
     justify-content: center;
-    background-color: rgb(43, 94, 157);
+    background-image: url(todo-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
 
 .form{
+    border-radius: 10px;   
+    border: dotted;
+    margin-top: 30px;
     position: absolute;
     top: 30%;
     box-shadow: 0 4px 8px rgba(0,0,0,.3);
-    width: 400px;
-    background-color:yellow;
-    border-radius: 10px;
+    width: 700px;
+    background-color:rgb(255, 215, 69);
+
 }
 
 .input{
     width: 100%;
     box-sizing: border-box;
+    background-color:rgba(171, 171, 171, 0.482);
     padding: 20px;
-    border-radius: 10px 10px 0 0;
     border: none;
     font-size: 20px;
-    font-family:'Courier New', Courier, monospace;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .input::placeholder{
-    color: lightgray;
+    color: rgb(108, 108, 108);
 }
 
 .list{
@@ -36,8 +42,8 @@ body{
 .list li{
     list-style-type: none;
     padding: 20px;
-    font-family: 'Courier New', Courier, monospace;
-    border-top: dotted;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-top: double;
     border-color: darkgray;
     position: relative;
 }
@@ -70,6 +76,6 @@ body{
 
 .todo-list{
     margin-top: 100px;
-    font-family: 'Courier New', Courier, monospace;
-    color: rgb(251, 255, 12);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: rgb(66, 106, 161);
 }
